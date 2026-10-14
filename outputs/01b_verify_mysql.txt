@@ -1,0 +1,40 @@
+Servidor de comparação: 8.0.46 | character_set_server: latin1
+                               tabela  linhas_mysql  linhas_sqlite  colunas_hash  colunas_float_ignoradas  hashes_identicos  linhas_divergentes
+             api_descriptions.aspectj            54             54             3                        0              True                   0
+       api_descriptions.aspectj_files          8647           8647             3                        0              True                   0
+                api_descriptions.birt           957            957             3                        0              True                   0
+          api_descriptions.birt_files          9708           9708             3                        0              True                   0
+             api_descriptions.eclipse          1314           1314             3                        0              True                   0
+       api_descriptions.eclipse_files         13386          13386             3                        0              True                   0
+                 api_descriptions.jdt          1329           1329             3                        0              True                   0
+           api_descriptions.jdt_files         14285          14285             3                        0              True                   0
+                 api_descriptions.swt           161            161             3                        0              True                   0
+           api_descriptions.swt_files          3596           3596             3                        0              True                   0
+              api_descriptions.tomcat           389            389             3                        0              True                   0
+        api_descriptions.tomcat_files          2835           2835             3                        0              True                   0
+                aspectj.bug_and_files           593            593            11                        2              True                   0
+                   aspectj.bug_commit          3315           3315            16                        0              True                   0
+                 aspectj.file_history          1144           1144             4                        0              True                   0
+                   birt.bug_and_files          4178           4178            11                        2              True                   0
+                      birt.bug_commit          8913           8913            16                        0              True                   0
+                    birt.file_history          3986           3986             4                        0              True                   0
+       eclipse_platform_ui.appcommits         28621          28621             5                        0              True                   0
+    eclipse_platform_ui.bug_and_files          6495           6495            11                        2              True                   0
+       eclipse_platform_ui.bug_commit         13090          13090            16                        0              True                   0
+eclipse_platform_ui.commitfilechanges         79022          79022             2                        0              True                   0
+     eclipse_platform_ui.file_history          6256           6256             4                        0              True                   0
+ eclipse_platform_ui.migrationmapping             0              0             4                        0              True                   0
+     eclipse_platform_ui.repositories             1              1             3                        0              True                   0
+   eclipse_platform_ui.validationtype             3              3             2                        0              True                   0
+                    jdt.bug_and_files          6274           6274            11                        2              True                   0
+                       jdt.bug_commit         10494          10494            16                        0              True                   0
+                     jdt.file_history          4999           4999             4                        0              True                   0
+                    swt.bug_and_files          4151           4151            11                        2              True                   0
+                       swt.bug_commit          8565           8565            16                        0              True                   0
+                     swt.file_history          1409           1409             4                        0              True                   0
+                 tomcat.bug_and_files          1056           1056            11                        2              True                   0
+                    tomcat.bug_commit          2271           2271            16                        0              True                   0
+                  tomcat.file_history          1041           1041             4                        0              True                   0
+
+Tabelas: 35; com hashes idênticos: 35; linhas divergentes no total: 0.
+(fato) comparação linha a linha por MD5 do texto das colunas não float; colunas float/double não foram comparadas.

@@ -1,0 +1,68 @@
+== Formato dos CSV (sem cabeçalho): qid, bug_id, dev, features, label ==
+       abordagem  fold  linhas  n_feat  qids  bug_ids  devs  cand_por_qid_min  cand_por_qid_max  qid_min  qid_max  qids_sem_positivo  qids_mais_de_1_positivo labels
+  OurNewApproach     1  171536      18  1208      890   142               142               142        1     1378                 12                        0 [0, 1]
+  OurNewApproach     2  171536      18  1208      890   142               142               142     1379     2714                  0                        0 [0, 1]
+  OurNewApproach     3  171536      18  1208      890   142               142               142     2715     3986                  0                        0 [0, 1]
+PreviousApproach     1  171536      14  1208      890   142               142               142        1     1378                 12                        0 [0, 1]
+PreviousApproach     2  171536      14  1208      890   142               142               142     1379     2714                  0                        0 [0, 1]
+PreviousApproach     3  171536      14  1208      890   142               142               142     2715     3986                  0                        0 [0, 1]
+
+== Mesmos (qid,bug_id,dev) nos três folds? ==
+OurNewApproach | chaves (qid,bug,dev) iguais entre folds: False | conjuntos de bug_id iguais: True
+PreviousApproach | chaves (qid,bug,dev) iguais entre folds: False | conjuntos de bug_id iguais: True
+bug_id da linha i coincide entre fold1 e fold2? True | qid coincide? False
+Bugs distintos nos CSV: 890 | qids distintos por fold: 1208 1208 1208
+
+== Um mesmo bug_id aparece com vários qid? ==
+fold1: bug_ids com >1 qid: 183 de 890
+fold2: bug_ids com >1 qid: 183 de 890
+fold3: bug_ids com >1 qid: 183 de 890
+
+== Features da abordagem anterior == subconjunto das da nova? (primeiras 14 colunas) ==
+fold1: f1..f14 idênticas: True; label idêntico: True
+fold2: f1..f14 idênticas: True; label idêntico: True
+fold3: f1..f14 idênticas: True; label idêntico: True
+
+== Linhas 'todas zero' (desenvolvedor sem histórico no fold) ==
+fold1: linhas com 18 features = 0: 62848 (36.6%); desses, positivos: 42
+fold2: linhas com 18 features = 0: 100411 (58.5%); desses, positivos: 2
+fold3: linhas com 18 features = 0: 103537 (60.4%); desses, positivos: 2
+
+== Mapeamento bug_id para o dump ==
+   projeto  bugs_csv_em_bug_commit  bugs_csv_em_bug_and_files  bugs_bug_commit  bugs_bug_and_files
+      BIRT                       0                          0             6820                4178
+Eclipse UI                     890                        622             9424                6495
+       JDT                       3                          0             8620                6274
+       SWT                       8                          4             5917                4151
+bugs do CSV sem match em nenhum dos 4 projetos: 0
+bugs do CSV presentes em mais de 1 projeto do dump (ambíguos): 10
+
+== Rótulo (label=1) vs assignee/author do dump, para bugs do projeto de melhor match ==
+projeto de melhor match: Eclipse UI
+ fold  positivos  com_match_no_dump  dev_eq_assignee  dev_em_authors
+    1       1196               1196              823            1196
+    2       1208               1208              116             145
+    3       1208               1208              121             159
+
+== Positivos por fold: desenvolvedores distintos e candidatos vs authors/assignees do projeto ==
+fold1: positivos=1196; devs distintos entre positivos=91; maior dev concentra 22.4%
+fold2: positivos=1208; devs distintos entre positivos=21; maior dev concentra 40.0%
+fold3: positivos=1208; devs distintos entre positivos=18; maior dev concentra 40.0%
+candidatos por query=142; presentes como author no dump=139 (authors distintos no dump=143); como assignee=55 (assignees distintos=180)
+ordem das queries (fold1) por commit_time do último commit no dump é decrescente: True
+queries por bug no CSV == linhas bug_commit do bug: 96.9% dos 890 bugs
+
+== Cobertura do ID do bug no tempo: report_time dos bugs do CSV ==
+bugs do CSV com report_time no dump: 890 | min: 2001-10-10 22:35:04 | max: 2014-01-06 00:19:24
+
+== Arquivos .dat (SVMrank) ==
+OurNewApproach fold1.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+OurNewApproach fold2.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+OurNewApproach fold3.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+PreviousApproach fold1.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+PreviousApproach fold2.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+PreviousApproach fold3.dat: linhas=171536; qid igual ao CSV: True; ranks distintos: [1, 2]
+OurNewApproach TrainedOnFold2: kernel=0 (0=linear), highest feature=19, training documents=54
+OurNewApproach TrainedOnFold3: kernel=0 (0=linear), highest feature=19, training documents=48
+PreviousApproach TrainedOnFold2: kernel=0 (0=linear), highest feature=15, training documents=51
+PreviousApproach TrainedOnFold3: kernel=0 (0=linear), highest feature=15, training documents=48

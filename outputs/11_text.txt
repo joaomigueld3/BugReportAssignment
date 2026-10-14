@@ -1,0 +1,12 @@
+Nulos SQL (linhas): 0. Bugs com summary/description diferentes entre suas linhas: 0.
+   projeto  bugs  summary_vazio  desc_vazia  pct_desc_vazia  summary_w_med  summary_w_max  desc_w_med  desc_w_q90  desc_w_q99  desc_gt_300w  pct_stack_ge2_linhas_at  pct_com_Exception_Error  desc_nao_ascii  summary_len_max
+      BIRT  6820              0        1796           0.263             12             34          46         136         301         0.010                    0.061                    0.084              86              224
+Eclipse UI  9424              0        1875           0.199             11             29          41         149         421         0.021                    0.100                    0.094              31              199
+       JDT  8620              0        1303           0.151             11             27          48         154         358         0.018                    0.112                    0.109              39              183
+       SWT  5917              0        1309           0.221             10             33          51         176         594         0.034                    0.056                    0.053              51              191
+
+Resultados:
+(fato) comprimento medido em palavras separadas por espaço; tokens WordPiece do BERT serão mais numerosos (razão não medida aqui; não confirmada).
+(fato) stack trace = >=2 linhas começando com 'at pacote.Classe(Arquivo.java:N)'; Exception/Error = nome de classe java./org./javax. terminando em Exception ou Error. São heurísticas minhas, não validadas manualmente.
+(fato) `desc_nao_ascii` conta descrições com algum caractere não ASCII; o dump foi lido como UTF-8 estrito sem erro. (não confirmado) se houve perda de acentos/caracteres na exportação original (colunas utf8 em tabelas DEFAULT CHARSET=latin1).
+(fato) summary é tinytext (limite de 255 bytes no MySQL); `summary_len_max` mostra o maior comprimento em caracteres.

@@ -1,0 +1,71 @@
+== Nível linha (bug-commit): assignee == author (string exata) ==
+   projeto  linhas  iguais   pct  pct_iguais_assignee_nao_generico
+      BIRT    8913    2866 0.322                             0.332
+Eclipse UI   13090    8088 0.618                             0.700
+       JDT   10494    6880 0.656                             0.752
+       SWT    8565    6948 0.811                             0.836
+
+== Nível bug: assignee é um dos authors do bug? ==
+   projeto  bugs  bugs_assignee_generico  pct_generico  bugs_com_2mais_authors  assg_em_authors  pct_assg_em_authors_nao_gen  pct_unico_author_igual_assg_nao_gen  bugs_nao_gen_divergentes
+      BIRT  6820                     224         0.033                     259             2247                        0.341                                0.329                      4349
+Eclipse UI  9424                     845         0.090                     379             6145                        0.716                                0.689                      2434
+       JDT  8620                    1153         0.134                     240             5746                        0.770                                0.748                      1721
+       SWT  5917                     183         0.031                     262             5045                        0.880                                0.839                       689
+
+== Formato dos identificadores: author sem espaço (parece login) vs assignee ==
+   projeto  authors_distintos  authors_sem_espaco  authors_que_nunca_aparecem_como_assignee  assignees_distintos  assignees_genericos
+      BIRT                 74                  46                                        47                  148                   22
+Eclipse UI                143                  23                                        88                  180                   25
+       JDT                 55                   6                                        17                  163                   24
+       SWT                 42                   7                                        16                  109                   18
+
+== Contas genéricas/de triagem mais frequentes (bugs distintos; nomes de conta, não de pessoas) ==
+[BIRT]
+                                     bugs
+assignee                                 
+Birt-Data-inbox@eclipse.org            59
+Birt-ReportDesigner                    51
+Birt-ReportEngine-inbox@eclipse.org    34
+Birt-Build                             28
+Birt-ReportViewer                      10
+Birt-Report-inbox@eclipse.org          10
+Birt-Documentation                      9
+Birt-Chart-inbox@eclipse.org            4
+[Eclipse UI]
+                          bugs
+assignee                      
+Project Inbox              400
+Platform UI Triaged        199
+Platform-UI-Inbox          143
+platform-ua-inbox           31
+JDT-UI-Inbox                12
+Platform-Resources-Inbox     8
+platform-runtime-inbox       7
+Platform-Text-Inbox          7
+[JDT]
+                       bugs
+assignee                   
+JDT-UI-Inbox            501
+JDT-Text-Inbox          492
+Platform-Text-Inbox      64
+Platform-Search-Inbox    22
+JDT-Core-Inbox           20
+Platform-UI-Inbox        14
+PDE-UI-Inbox              6
+JDT-Debug-Inbox           5
+[SWT]
+                       bugs
+assignee                   
+Platform-SWT-Inbox      129
+Project Inbox            29
+Platform-UI-Inbox         4
+gef-inbox                 2
+Platform-Releng-Inbox     2
+Platform UI Triaged       2
+platform-cvs-inbox        2
+JDT-Core-Inbox            2
+
+Resultados:
+(fato) a regra de conta genérica usada é a regex /inbox|triaged|^birt-/ (heurística minha, não validada); a lista acima permite conferência. Contas como 'Birt-ReportDesigner' podem ser componentes, não pessoas (inferência).
+(fato) parte dos authors não tem espaço no nome (parecem logins; tabela acima) e muitos authors nunca aparecem como assignee, então a igualdade de strings subestima a concordância real; unificar identidades exige uma decisão metodológica (DECISIONS.md).
+(não confirmado) se author == pessoa que corrigiu: o dump não tem o mapeamento login->nome.

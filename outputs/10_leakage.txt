@@ -1,0 +1,29 @@
+                 populacao    projeto           ref  treino  teste  media_leak  pct_media  pct_mediana  pct_max  testes_com_leak  pct_testes_com_leak
+bug_commit (todos os bugs)       BIRT     1o commit    5456    682        10.8     0.0020       0.0018   0.0037              651                0.955
+bug_commit (todos os bugs)       BIRT ultimo commit    5456    682        12.2     0.0022       0.0020   0.0040              651                0.955
+bug_commit (todos os bugs) Eclipse UI     1o commit    7539    943        25.2     0.0033       0.0036   0.0069              942                0.999
+bug_commit (todos os bugs) Eclipse UI ultimo commit    7539    943        32.2     0.0043       0.0044   0.0092              942                0.999
+bug_commit (todos os bugs)        JDT     1o commit    6896    862        39.5     0.0057       0.0046   0.0133              846                0.981
+bug_commit (todos os bugs)        JDT ultimo commit    6896    862        40.9     0.0059       0.0052   0.0138              846                0.981
+bug_commit (todos os bugs)        SWT     1o commit    4733    592        14.8     0.0031       0.0023   0.0078              532                0.899
+bug_commit (todos os bugs)        SWT ultimo commit    4733    592        18.1     0.0038       0.0032   0.0093              532                0.899
+ subconjunto bug_and_files       BIRT     1o commit    3342    418         6.2     0.0019       0.0021   0.0030              399                0.955
+ subconjunto bug_and_files       BIRT ultimo commit    3342    418         6.2     0.0019       0.0021   0.0030              399                0.955
+ subconjunto bug_and_files Eclipse UI     1o commit    5196    650        12.9     0.0025       0.0023   0.0067              650                1.000
+ subconjunto bug_and_files Eclipse UI ultimo commit    5196    650        12.9     0.0025       0.0023   0.0067              650                1.000
+ subconjunto bug_and_files        JDT     1o commit    5019    628        30.3     0.0060       0.0046   0.0137              613                0.976
+ subconjunto bug_and_files        JDT ultimo commit    5019    628        30.3     0.0060       0.0046   0.0137              613                0.976
+ subconjunto bug_and_files        SWT     1o commit    3320    416         7.0     0.0021       0.0018   0.0057              355                0.853
+ subconjunto bug_and_files        SWT ultimo commit    3320    416         7.0     0.0021       0.0018   0.0057              355                0.853
+
+Além do split: bugs de treino com commit posterior ao report_time de teste mais antigo (t = primeiro bug de teste):
+   projeto                  t0  treino  com_ultimo_commit_apos_t0  com_primeiro_commit_apos_t0
+      BIRT 2009-08-23 23:02:52    5456                         22                           20
+Eclipse UI 2011-04-05 11:35:46    7539                         69                           52
+       JDT 2009-08-11 07:26:19    6896                         95                           92
+       SWT 2010-12-22 08:30:37    4733                         44                           37
+
+Resultados:
+(fato) unidade = bug (bug_id distintos); referência = report_time do bug de teste; treino = primeiros 80% e teste = últimos 10% por report_time, por projeto.
+(fato) quase todo bug de teste (85% a 100%, conforme projeto e população) tem pelo menos um bug de treino com commit posterior ao seu report_time; em média 6 a 41 bugs, ou 0,2% a 0,6% do treino.
+(inferência) a magnitude é pequena porque o commit costuma ocorrer poucos dias após o report (mediana de 5 a 15 dias, ver 09); o efeito é presente mas de tamanho limitado nesta medida. Não medido: impacto desse vazamento nas métricas do Ramo B em si, que depende do cálculo definido na fase de modelagem.

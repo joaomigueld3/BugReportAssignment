@@ -1,0 +1,37 @@
+Corte cronológico 80% de report_time por projeto (bugs distintos), usado só para medir desenvolvedores tardios.
+
+===== Rótulo: assignee (1 por bug) =====
+   projeto  devs  mediana_bugs  max_bugs  devs_ate_5  devs_ate_10  top5_share  top10_share  devs_so_apos_corte  itens_pos_corte  itens_de_devs_nao_vistos  pct_nao_vistos
+      BIRT   148             4       380          80           90       0.247        0.432                  12             1364                        16           0.012
+Eclipse UI   180             4      1490          95          118       0.451        0.643                  18             1885                       119           0.063
+       JDT   163             3      1459         100          116       0.550        0.783                  33             1724                        71           0.041
+       SWT   109             2      1246          80           86       0.654        0.847                  12             1184                        64           0.054
+Número de desenvolvedores com >= k itens:
+       BIRT  Eclipse UI  JDT  SWT
+>=1     148         180  163  109
+>=5      71          90   69   30
+>=10     61          67   49   23
+>=20     52          47   31   21
+>=50     36          30   19   15
+>=100    24          20   14   13
+assignee excluindo contas genéricas (regex de 06): devs distintos por projeto: {'BIRT': 126, 'Eclipse UI': 155, 'JDT': 139, 'SWT': 91} ; bugs removidos: 2405
+
+===== Rótulo: author (pares bug-author distintos) =====
+   projeto  devs  mediana_bugs  max_bugs  devs_ate_5  devs_ate_10  top5_share  top10_share  devs_so_apos_corte  itens_pos_corte  itens_de_devs_nao_vistos  pct_nao_vistos
+      BIRT    74            26       750          23           28       0.372        0.607                  15             1402                        52           0.037
+Eclipse UI   143             3      1799          91           99       0.518        0.725                  65             2033                       203           0.100
+       JDT    55             2      2017          31           33       0.749        0.925                  27             1809                        52           0.029
+       SWT    42            10      1406          20           21       0.697        0.903                  14             1237                        84           0.068
+Número de desenvolvedores com >= k itens:
+       BIRT  Eclipse UI  JDT  SWT
+>=1      74         143   55   42
+>=5      53          56   24   23
+>=10     47          44   22   21
+>=20     41          37   18   19
+>=50     29          26   15   14
+>=100    21          20   12   11
+
+Resultados:
+(fato) 'itens_de_devs_nao_vistos' = itens após o corte de 80% cujo desenvolvedor só aparece pela primeira vez depois do corte (cold-start para o split cronológico).
+(fato) author é um identificador heterogêneo (ver 06), então a contagem de authors distintos pode superestimar pessoas; a de assignee inclui contas genéricas.
+(inferência) com 42 a 55 authors em SWT e JDT contra 143 em Eclipse UI, os dois primeiros têm espaço de classes pequeno (ameaça a declarar), o que é consistente com a observação da literatura citada no CLAUDE.md (número de desenvolvedores por projeto não verificado contra Alkhazi).

@@ -1,0 +1,36 @@
+== Identificação do projeto ==
+(fato) o dump tem um banco MySQL por projeto (birt, eclipse_platform_ui, jdt, swt, aspectj, tomcat); `bug_commit` não tem coluna de projeto.
+`product` não separa os projetos: share do produto majoritário e nº de valores distintos de product/component por projeto.
+   projeto  n_product  n_component product_top  share_bugs_product_top
+      BIRT         27           59        BIRT                   0.986
+Eclipse UI         20           45    Platform                   0.858
+       JDT         11           27         JDT                   0.939
+       SWT         22           33    Platform                   0.991
+
+== Overlap de bug_id entre bancos (bug_commit) ==
+BIRT {'Eclipse UI': 0, 'JDT': 2, 'SWT': 2}
+Eclipse UI {'BIRT': 0, 'JDT': 74, 'SWT': 43}
+JDT {'BIRT': 2, 'Eclipse UI': 74, 'SWT': 25}
+SWT {'BIRT': 2, 'Eclipse UI': 43, 'JDT': 25}
+
+== Contagens: linhas e bug_id distintos ==
+   projeto  bc_linhas  bc_bugs  linhas_por_bug  bc_bugs_FIXED  baf_linhas  baf_bugs baf_subconj_bc  ref_Alkhazi  ref_DevRanker
+      BIRT       8913     6820            1.31           6658        4178      4178           True         4952           4178
+Eclipse UI      13090     9424            1.39           8854        6495      6495           True         6670           6495
+       JDT      10494     8620            1.22           8277        6274      6274           True         6528           6274
+       SWT       8565     5917            1.45           5594        4151      4151           True         4266           4151
+     TOTAL      41062    30781             NaN          29383       21098     21098            NaN        22416          21098
+
+== Grão de bug_commit ==
+   projeto  bugs_1_linha  bugs_2mais  max_linhas_bug  pares_bug_commit_repetidos  repetidos_com_files_distintos  commit_vazio
+      BIRT          5462        1358              31                         359                              0             0
+Eclipse UI          7542        1882             142                           5                              0             0
+       JDT          7282        1338              12                           6                              0             0
+       SWT          4583        1334              45                          13                              0             0
+
+Resultados:
+(fato) o grão de bug_commit é bug-commit (e há pares bug_id+commit repetidos); bug_and_files tem exatamente 1 linha por bug_id.
+(fato) a soma de bug_and_files por projeto coincide com os valores de DevRanker (21.098); não coincide com Alkhazi (22.416).
+(fato) bug_commit tem mais bugs distintos que ambas as referências (30.781 contra 22.416 e 21.098). O único filtro testado aqui (status contendo FIXED, 29.383) não reproduz Alkhazi; outros filtros não foram testados.
+(fato) alguns bug_id aparecem em mais de um banco (ex.: 74 entre Eclipse UI e JDT); a chave de um bug precisa ser (projeto, bug_id).
+(não confirmado) a causa da diferença 22.416 vs 21.098. Falta: critério de filtro de Alkhazi (INVALID, desenvolvedores ativos), não presente no dump.

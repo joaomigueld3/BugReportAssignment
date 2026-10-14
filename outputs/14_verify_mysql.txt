@@ -1,0 +1,39 @@
+Servidor MySQL: 8.0.12
+                               tabela  linhas_mysql  linhas_sqlite  hash_igual
+             api_descriptions.aspectj            54             54        True
+       api_descriptions.aspectj_files          8647           8647        True
+                api_descriptions.birt           957            957        True
+          api_descriptions.birt_files          9708           9708        True
+             api_descriptions.eclipse          1314           1314        True
+       api_descriptions.eclipse_files         13386          13386        True
+                 api_descriptions.jdt          1329           1329        True
+           api_descriptions.jdt_files         14285          14285        True
+                 api_descriptions.swt           161            161        True
+           api_descriptions.swt_files          3596           3596        True
+              api_descriptions.tomcat           389            389        True
+        api_descriptions.tomcat_files          2835           2835        True
+                aspectj.bug_and_files           593            593        True
+                   aspectj.bug_commit          3315           3315        True
+                 aspectj.file_history          1144           1144        True
+                   birt.bug_and_files          4178           4178        True
+                      birt.bug_commit          8913           8913        True
+                    birt.file_history          3986           3986        True
+       eclipse_platform_ui.appcommits         28621          28621        True
+    eclipse_platform_ui.bug_and_files          6495           6495        True
+       eclipse_platform_ui.bug_commit         13090          13090        True
+eclipse_platform_ui.commitfilechanges         79022          79022        True
+     eclipse_platform_ui.file_history          6256           6256        True
+ eclipse_platform_ui.migrationmapping             0              0        True
+     eclipse_platform_ui.repositories             1              1        True
+   eclipse_platform_ui.validationtype             3              3        True
+                    jdt.bug_and_files          6274           6274        True
+                       jdt.bug_commit         10494          10494        True
+                     jdt.file_history          4999           4999        True
+                    swt.bug_and_files          4151           4151        True
+                       swt.bug_commit          8565           8565        True
+                     swt.file_history          1409           1409        True
+                 tomcat.bug_and_files          1056           1056        True
+                    tomcat.bug_commit          2271           2271        True
+                  tomcat.file_history          1041           1041        True
+
+Tabelas comparadas: 35 (SQLite tem 35); divergentes: 0 []

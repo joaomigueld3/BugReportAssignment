@@ -1,0 +1,53 @@
+== bug_commit: status completo, bugs distintos ==
+bugs com mais de um status entre suas linhas: 0
+project               BIRT  Eclipse UI   JDT   SWT  total
+status                                                   
+RESOLVED FIXED        1670        2823  5008  5091  14592
+VERIFIED FIXED         836        5381  3177   405   9799
+CLOSED FIXED          4152         650    92    98   4992
+NEW                     25         186    24   110    345
+(vazio)                 48          86    89    56    279
+RESOLVED WONTFIX        19          51    72    69    211
+RESOLVED WORKSFORME     15          77    57    33    182
+ASSIGNED                10          48    57     5    120
+RESOLVED INVALID         8          49    31    15    103
+REOPENED                 5          51     4    20     80
+CLOSED WONTFIX           9           5     3    10     27
+CLOSED WORKSFORME        8           5     0     2     15
+CLOSED INVALID           8           3     1     0     12
+VERIFIED INVALID         1           3     2     1      7
+VERIFIED WORKSFORME      2           3     1     0      6
+RESOLVED NOT_ECLIPSE     2           1     1     1      5
+VERIFIED WONTFIX         1           2     1     0      4
+CLOSED NOT_ECLIPSE       0           0     0     1      1
+VERIFIED NOT_ECLIPSE     1           0     0     0      1
+
+== bug_commit: grupos de status, bugs distintos ==
+project                        BIRT  Eclipse UI   JDT   SWT  total
+grupo                                                             
+fechado FIXED                  6658        8854  8277  5594  29383
+aberto (NEW)                     25         186    24   110    345
+aberto ((VAZIO))                 48          86    89    56    279
+resolvido outro (WONTFIX)        29          58    76    79    242
+resolvido outro (WORKSFORME)     25          85    58    35    203
+resolvido outro (INVALID)        17          55    34    16    122
+aberto (ASSIGNED)                10          48    57     5    120
+aberto (REOPENED)                 5          51     4    20     80
+resolvido outro (NOT_ECLIPSE)     3           1     1     2      7
+
+== bug_and_files: status (1 linha por bug) ==
+project           BIRT  Eclipse UI   JDT   SWT  total
+status                                               
+closed fixed      2640         511    66    61   3278
+closed wontfix       8           1     3     6     18
+resolved fixed     974        2033  3802  3738  10547
+resolved wontfix    10          35    51    47    143
+verified fixed     546        3913  2351   299   7109
+verified wontfix     0           2     1     0      3
+
+Resultados:
+(fato) em bug_commit há 824 bugs distintos com status aberto (NEW, ASSIGNED, REOPENED) ou vazio, apesar de terem commit vinculado; a hipótese 'só bugs fechados' é refutada para bug_commit.
+(fato) em bug_and_files só há status resolvido (fixed ou wontfix), em minúsculas; é um subconjunto filtrado.
+(inferência) bugs com commit vinculado e status aberto/vazio podem ser commits que citam o bug sem resolvê-lo; não confirmado, falta inspecionar `log`.
+(fato) nenhuma linha de bug_commit tem `commit` vazio (ver 03); bugs WONTFIX/INVALID/WORKSFORME/NOT_ECLIPSE com commit aparecem (574 bugs distintos), logo nem todo bug em bug_commit foi corrigido.
+(inferência) bugs atribuídos que nunca receberam commit não estão no dump, o que subestimaria o workload (limitação 2). Não confirmado: o dump não traz a população de bugs sem commit para medir o tamanho do viés; faltaria uma exportação do Bugzilla.

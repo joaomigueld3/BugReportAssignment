@@ -1,0 +1,6 @@
+# Log bruto das sessões de trabalho, append-only.
+# Escrito automaticamente pelos hooks SessionStart e SessionEnd
+# (scripts/registro_sessao.sh, configurado em .claude/settings.json).
+# Captura mecânica, sem interpretação: commits, arquivos tocados, estado do git.
+# A curadoria em prosa é feita pelo agente registro-dissertacao, que lê este arquivo.
+# Criado em 2026-10-14. A captura automática começa a valer na próxima sessão.

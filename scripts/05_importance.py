@@ -1,0 +1,33 @@
+"""05_importance: valores, parsing em prioridade/severidade, anomalias."""
+from common import *
+
+o = Out("05_importance")
+bc = load("bug_commit", cols="bug_id,importance")
+incons = int((bc.groupby(["project", "bug_id"])["importance"].nunique() > 1).sum())
+b = bc.drop_duplicates(["project", "bug_id"]).copy()
+b["importance"] = b["importance"].fillna("<NULL>")
+pat = re.compile(r"^P([1-5]) (blocker|critical|major|normal|minor|trivial|enhancement)$")
+m = b["importance"].map(lambda s: pat.match(s))
+b["ok"] = m.notna()
+b["prio"] = m.map(lambda x: x.group(1) if x else None)
+b["sev"] = m.map(lambda x: x.group(2) if x else None)
+o("== Parsing (bugs distintos) ==")
+o.table(b.groupby("project").agg(bugs=("bug_id", "size"), padrao_ok=("ok", "sum"), fora_do_padrao=("ok", lambda s: (~s).sum()),
+                                  nulos=("importance", lambda s: (s == "<NULL>").sum()), vazios=("importance", lambda s: (s == "").sum()),
+                                  valores_distintos=("importance", "nunique")))
+o("Valores fora do padrão:", sorted(b.loc[~b.ok, "importance"].unique()) or "nenhum")
+o("\n== Prioridade (P1..P5), bugs distintos ==")
+o.table(b.groupby(["prio", "project"]).size().unstack(fill_value=0))
+o("\n== Severidade, bugs distintos ==")
+o.table(b.groupby(["sev", "project"]).size().unstack(fill_value=0))
+o("\n== Prioridade x severidade, todos os projetos, bugs distintos ==")
+o.table(pd.crosstab(b["prio"], b["sev"]))
+o("\nShare de P3 e de 'normal' por projeto:")
+o.table(b.groupby("project").agg(P3=("prio", lambda s: round((s == "3").mean(), 3)), normal=("sev", lambda s: round((s == "normal").mean(), 3))))
+o("\nResultados:")
+o(f"(fato) {int(b.ok.sum())} de {len(b)} bugs seguem o padrão 'P<1-5> <severidade>' com um espaço; separação por parsing sem perda: {'sim' if b.ok.all() else 'não'} para os que seguem o padrão.")
+o("(fato) 'enhancement' ocorre na posição de severidade da string. (Inferência, conhecimento externo ao dump: é um valor de severidade do Bugzilla.)")
+o("(inferência) P3/normal dominam, logo os scores de prioridade e severidade terão pouca variância entre desenvolvedores; a ser medido na fase de modelagem.")
+o(f"(fato) bugs com mais de um valor de importance entre suas linhas: {incons}.")
+o("(não confirmado) se prioridade/severidade são o valor inicial ou o final: o dump não tem histórico de alterações.")
+o.save()
