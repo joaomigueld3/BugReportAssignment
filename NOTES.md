@@ -158,6 +158,13 @@ Componentes:
 
 **Não confirmado**: o comportamento do hook `SessionEnd` em encerramentos abruptos (queda do terminal, `kill`). O pipe-test cobre a invocação normal.
 
+## Etapa 13: decisões do pesquisador, restauração em MySQL real e D9 (2026-10-14; scripts 01b e 14)
+
+- Decisões registradas em `DECISIONS.md`: D1 (MySQL real), D2 (author), D4 (primeiro commit), D6 (report_time com corte por commit_time no Ramo B), D10 (`bug_commit` com FIXED), D13 (todos os authors positivos).
+- (fato) Restauração em MySQL 8.0.46 (Docker, container `bugtriage-mysql`): dump carregado sem erros em cerca de 33 s. Comparação com o SQLite (`01b_verify_mysql`): 35 de 35 tabelas idênticas em contagem e em hash MD5 de linha, exceto as colunas float (`report_timestamp`, `commit_timestamp` em `bug_and_files`), não comparadas. Imagem `mysql:8.0` baixada (rede usada só para isso); o container permanece ativo e sem porta publicada.
+- (fato) D9, `14_alkhazi_filter`: nenhuma das 608 configurações testadas reproduz os tamanhos de Alkhazi (nem um único projeto). A causa continua não confirmada.
+- (fato) Consequência da D10: a base passa a ter 29.383 bugs (BIRT 6.658, UI 8.854, JDT 8.277, SWT 5.594), 8.285 a mais que a referência DevRanker (21.098) e 6.967 a mais que Alkhazi (22.416). A comparação de tamanho com a literatura deve ser feita com essa ressalva.
+
 ## Itens que precisam do pesquisador
 
 Ver `DECISIONS.md`. Pendências desta etapa: população-base, resolução de identidades, tratamento de contas genéricas e de bugs não fechados, e teste de sanidade com os arquivos de features (D8 inspecionado e encerrado; ver Etapa 12).

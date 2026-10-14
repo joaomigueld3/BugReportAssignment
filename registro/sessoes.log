@@ -4,3 +4,12 @@
 # Captura mecânica, sem interpretação: commits, arquivos tocados, estado do git.
 # A curadoria em prosa é feita pelo agente registro-dissertacao, que lê este arquivo.
 # Criado em 2026-10-14. A captura automática começa a valer na próxima sessão.
+
+=== sessão a098ec4f | fim em 2026-10-14 17:55:47 | HEAD 341a3f2 -> 341a3f2
+  git status ao fim:
+     M DECISIONS.md
+     M NOTES.md
+     M scripts/14_alkhazi_filter.py
+     M scripts/run_all.sh
+    ?? outputs/14_alkhazi_filter.txt
+  diff vs HEAD: 4 files changed, 43 insertions(+), 22 deletions(-)

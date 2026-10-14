@@ -4,3 +4,23 @@ data/interim/
 __pycache__/
 *:Zone.Identifier
 registro/.marcador
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+
+# Bytecode e caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Arquivos de IDE / SO
+.vscode/
+.idea/
+.DS_Store
+EOF
