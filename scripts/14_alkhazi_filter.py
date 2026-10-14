@@ -56,7 +56,12 @@ o.table(r.groupby("status").erro_abs.min().sort_values().to_frame())
 near = r[(r.total - 22416).abs() <= 150]
 o(f"\nConfigurações com total entre 22.266 e 22.566: {len(near)}")
 o.table(near.head(10), index=False)
+d252 = r[(r.devs_soma - 252).abs() <= 15]
+o(f"\nConfigurações com soma de desenvolvedores entre 237 e 267 (alvo 252): {len(d252)}; melhor erro absoluto entre elas: {int(d252.erro_abs.min()) if len(d252) else 'n/a'}")
+o.table(d252.head(5), index=False)
 o("\n== Considerações ==")
+o("(fato) a melhor configuração por tamanho (erro 1.837) fica no limite da grade (k=100) e tem apenas ~69 desenvolvedores; as que têm ~252 desenvolvedores têm erro muito maior. Nenhuma combinação satisfaz tamanho e número de desenvolvedores.")
+o("(não confirmado) o critério de Alkhazi: seguem hipóteses não testadas (limiar de 'ativo' por período, deduplicação de identidades, uso de outra fonte de bugs).")
 o("(fato) bug_and_files (21.098) é menor que o alvo em todos os projetos, então não pode ser a base de Alkhazi sem acréscimo.")
 o("(fato) o resultado acima vale somente para os filtros da grade. Autores/assignees ativos foram definidos por número mínimo de bugs no projeto, definição minha.")
 o.save()

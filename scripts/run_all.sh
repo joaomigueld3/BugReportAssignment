@@ -5,4 +5,4 @@ set -euo pipefail
 cd "$(dirname "$0")"
 PY=../.venv/bin/python
 $PY 01_restore.py > /dev/null
-for s in 0[2-9]_*.py 1[0-3]_*.py; do echo "== $s"; $PY "$s" > /dev/null; done
+for s in 0[2-9]_*.py 1[0-4]_*.py; do echo "== $s"; $PY "$s" > /dev/null; done

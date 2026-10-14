@@ -1,0 +1,51 @@
+Configurações testadas: 608. Alvo: {'BIRT': 4952, 'Eclipse UI': 6670, 'JDT': 6528, 'SWT': 4266}, total 22.416; desenvolvedores 252.
+
+== 15 melhores (menor erro absoluto somado nos 4 projetos) ==
+                                       status   produto   rotulo  k_min_bugs  modo  BIRT  Eclipse UI  JDT  SWT  total  devs_soma  erro_abs  exatos
+                                        FIXED  qualquer assignee         100 algum  5020        6941 7145 5147  24253         69      1837       0
+                                        FIXED  qualquer assignee         100 todos  5020        6941 7145 5147  24253         69      1837       0
+resolvidos sem INVALID/WORKSFORME/NOT_ECLIPSE  qualquer assignee         100 todos  5031        6979 7184 5210  24404         69      1988       0
+resolvidos sem INVALID/WORKSFORME/NOT_ECLIPSE  qualquer assignee         100 algum  5031        6979 7184 5210  24404         69      1988       0
+                                FIXED+WONTFIX  qualquer assignee         100 algum  5031        6979 7184 5210  24404         69      1988       0
+                                FIXED+WONTFIX  qualquer assignee         100 todos  5031        6979 7184 5210  24404         69      1988       0
+                       resolvidos sem INVALID  qualquer assignee         100 todos  5045        7136 7224 5242  24647         70      2231       0
+                       resolvidos sem INVALID  qualquer assignee         100 algum  5045        7136 7224 5242  24647         70      2231       0
+              resolvidos (qualquer resolução)  qualquer assignee         100 todos  5053        7181 7247 5254  24735         70      2319       0
+              resolvidos (qualquer resolução)  qualquer assignee         100 algum  5053        7181 7247 5254  24735         70      2319       0
+                                        FIXED principal assignee         100 algum  5013        5707 6981 5143  22844         66      2354       0
+                                        FIXED principal assignee         100 todos  5013        5707 6981 5143  22844         66      2354       0
+           sem INVALID/WORKSFORME/NOT_ECLIPSE principal assignee         100 todos  5079        6065 7124 5351  23619         67      2413       0
+           sem INVALID/WORKSFORME/NOT_ECLIPSE principal assignee         100 algum  5079        6065 7124 5351  23619         67      2413       0
+resolvidos sem INVALID/WORKSFORME/NOT_ECLIPSE principal assignee         100 todos  5024        5743 7019 5206  22992         66      2430       0
+
+Configurações com os 4 projetos exatos: 0; com algum projeto exato: 0.
+Melhor erro por 'status' (todas as demais dimensões livres):
+                                               erro_abs
+status                                                 
+FIXED                                              1837
+FIXED+WONTFIX                                      1988
+resolvidos sem INVALID/WORKSFORME/NOT_ECLIPSE      1988
+resolvidos sem INVALID                             2231
+resolvidos (qualquer resolução)                    2319
+sem INVALID/WORKSFORME/NOT_ECLIPSE                 2413
+sem INVALID                                        2462
+todos                                              2470
+
+Configurações com total entre 22.266 e 22.566: 0
+Empty DataFrame
+Columns: [status, produto, rotulo, k_min_bugs, modo, BIRT, Eclipse UI, JDT, SWT, total, devs_soma, erro_abs, exatos]
+Index: []
+
+Configurações com soma de desenvolvedores entre 237 e 267 (alvo 252): 18; melhor erro absoluto entre elas: 5010
+                                       status   produto   rotulo  k_min_bugs  modo  BIRT  Eclipse UI  JDT  SWT  total  devs_soma  erro_abs  exatos
+                                        FIXED principal assignee           3 algum  6558        7593 7777 5498  27426        261      5010       0
+                                        FIXED principal assignee           3 todos  6558        7593 7777 5498  27426        261      5010       0
+                                        FIXED  qualquer assignee           5 algum  6573        8711 8132 5496  28912        243      6496       0
+                                        FIXED  qualquer assignee           5 todos  6573        8711 8132 5496  28912        243      6496       0
+resolvidos sem INVALID/WORKSFORME/NOT_ECLIPSE  qualquer assignee           5 algum  6594        8765 8200 5576  29135        249      6719       0
+
+== Considerações ==
+(fato) a melhor configuração por tamanho (erro 1.837) fica no limite da grade (k=100) e tem apenas ~69 desenvolvedores; as que têm ~252 desenvolvedores têm erro muito maior. Nenhuma combinação satisfaz tamanho e número de desenvolvedores.
+(não confirmado) o critério de Alkhazi: seguem hipóteses não testadas (limiar de 'ativo' por período, deduplicação de identidades, uso de outra fonte de bugs).
+(fato) bug_and_files (21.098) é menor que o alvo em todos os projetos, então não pode ser a base de Alkhazi sem acréscimo.
+(fato) o resultado acima vale somente para os filtros da grade. Autores/assignees ativos foram definidos por número mínimo de bugs no projeto, definição minha.
