@@ -23,6 +23,7 @@ ABAS = [
     ("13_features_sanity", "Features (D8)", "ExtractedFeatures e SVMrank: o que são e como mapeiam para o dump."),
     ("14_alkhazi_filter", "Filtro Alkhazi (D9)", "Busca de filtros que reproduzam 22.416 bugs."),
     ("14_verify_mysql", "MySQL (D1)", "SQLite x MySQL 8.0.12: 35 de 35 tabelas idênticas."),
+    ("18_eda_base", "Base decidida", "Descritivos na base FIXED com rótulo author: rótulo, cold-start, pool, tempo, texto."),
     ("15_pii_scan", "Dados pessoais", "Onde há dado pessoal no dump (contagens)."),
     ("16_make_samples", "Amostras", "Como as amostras foram geradas e verificadas."),
 ]
