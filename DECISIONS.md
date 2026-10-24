@@ -95,9 +95,11 @@ Formato: data, título, status, evidência, alternativas, decisão, responsável
 - Responsável: pesquisador.
 
 ## D14. Publicação de dados no GitHub
-- Status: aberta (2026-10-16). Nada foi publicado; o `origin` do repositório é `joaomigueld3/BugReportAssignment`.
+- Status: aberta (2026-10-16; estado corrigido em 2026-10-23). (fato, `git branch -vv`) O `origin` (`joaomigueld3/BugReportAssignment`) já tem `master` e `exploracao-dataset` com os commits `341a3f2` e `40627f3` (CLAUDE.md, NOTES, DECISIONS, `dissertacao/`, `registro/`, `.claude/`, scripts e saídas agregadas, sem nomes de pessoas); só `74e47ee` está local. O histórico herdado do upstream inclui `SQL_BugDatabase_Dump.7z`, `ExtractedFeatures.zip` e `SVMrank_Models.zip`, que contêm os dados completos, com nomes. `data/samples/` não está versionado. (não confirmado) se o repositório é público ou privado.
 - Evidência: `15_pii_scan` (nomes de usuários que reportaram bugs, nomes em texto livre, 8 e-mails em logs) e `16_make_samples` (amostras pseudonimizadas de cerca de 1,2 MB, 0 nomes reais pela busca exata). Reidentificação continua possível por `bug_id` e hash de commit.
 - Alternativas: (a) versionar só scripts, saídas agregadas e amostras pseudonimizadas, com instruções e SHA-256 para obter o dump do upstream (recomendada); (b) versionar também dados completos pseudonimizados (reidentificáveis, licença do dataset não verificada); (c) não publicar dados.
-- Decisão: pendente. Verificar também a licença do repositório upstream, que não tem arquivo de licença visível.
+- Respostas do pesquisador (2026-10-23): o repositório original (upstream) é público; aceita que `dissertacao/`, `NOTES.md` e `registro/` fiquem expostos; considera a licença aberta por o dataset ser fonte de artigo científico.
+- Ressalva do Claude Code: (fato) o upstream não tem arquivo de licença; (inferência) a publicação em artigo não concede licença por si, então a redistribuição segue "não confirmada". O risco prático parece baixo, pois o conteúdo já é público no upstream; mitigação proposta: aviso de atribuição à fonte no README. Visibilidade do `origin` (o fork) continua não confirmada.
+- Decisão: parcial. Aceito manter o que já está publicado. Pendente: amostras pseudonimizadas ou cruas. Recomendação: pseudonimizadas e sem a coluna `reporter` (ver conversa de 2026-10-23: CSV em texto é indexável por busca, ao contrário do `.7z`).
 - Responsável: pesquisador.
 

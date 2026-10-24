@@ -1,3 +1,11 @@
+<!-- fork-aviso: início. Bloco adicionado neste fork; o texto original do upstream começa abaixo. -->
+> **Sobre este repositório.** Fork de [anonymous-programmers/BugReportAssignment](https://github.com/anonymous-programmers/BugReportAssignment), o repositório anonimizado do dataset de bug reports e commits associado ao artigo "Improving Developer Profiling to Enhance Bug Report Assignment" (ICPC 2019) e a Alkhazi et al. (Applied Soft Computing, 2020). O dump `SQL_BugDatabase_Dump.7z`, `ExtractedFeatures.zip` e `SVMrank_Models.zip` vêm do upstream sem alteração.
+>
+> O upstream não traz arquivo de licença; consulte-o para os termos de uso dos dados. O dump contém bug reports e histórico de commits de projetos open source (segundo o README do upstream) e inclui nomes de usuários e desenvolvedores.
+>
+> O que é deste fork: a análise exploratória para uma dissertação de mestrado (`scripts/`, `outputs/`, `NOTES.md`, `DECISIONS.md`, `dissertacao/`). Esses arquivos trazem só dados agregados; amostras com nomes pseudonimizados, se existirem, ficam em `data/samples/`.
+<!-- fork-aviso: fim -->
+
 # Introduction
 This document contains links and instructions regarding the dataset and approach we used as described in the ICPC 2019 paper “Improving Developer Profiling to Enhance Bug Report Assignment.”  The dataset contains bug reports and the corresponding commit history for the six open source Java projects: AspectJ, Birt, Eclipse Platform UI, JDT, SWT, and Tomcat.  Where applicable, we have provided files from both our replication of Tian et al.'s approach as well as our novel approach. These files are split into two folders: "OurNewApproach" (containing files from our approach) and "PreviousApproach" (containing files from our recreation of the previous approach).
 
