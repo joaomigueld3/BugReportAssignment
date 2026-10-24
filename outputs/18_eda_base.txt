@@ -1,0 +1,116 @@
+Base: bug_commit com resolução FIXED, chave (projeto, bug_id). Rótulo: author do commit (todos os authors do bug positivos).
+
+== 1. Tamanho da base ==
+               bugs  linhas_bug_commit  authors_distintos  pares_bug_author  positivos_por_bug  bugs_2mais_authors  pct_2mais
+project                                                                                                                      
+BIRT         6658.0             8713.0               74.0            6954.0              1.044               256.0      0.038
+Eclipse UI   8854.0            12079.0              138.0            9220.0              1.041               334.0      0.038
+JDT          8277.0            10075.0               53.0            8525.0              1.030               229.0      0.028
+SWT          5594.0             8058.0               41.0            5873.0              1.050               244.0      0.044
+TOTAL       29383.0            38925.0                NaN           30572.0              1.040              1063.0      0.036
+Distribuição de authors por bug (nº de bugs):
+project  BIRT  Eclipse UI   JDT   SWT
+n_auth                               
+1        6402        8520  8048  5350
+2         222         307   213   214
+3          30          24    14    25
+4           2           1     1     5
+5           2           2     1     0
+
+== 2. Distribuição do rótulo (pares bug-author por author) ==
+   projeto  authors  mediana  max  top1_share  top5_share  top10_share  ate_5  ate_10  ge_50  ge_100  gini
+      BIRT       74       25  727       0.105       0.371        0.606     23      28     28      21 0.703
+Eclipse UI      138        3 1704       0.185       0.516        0.726     87      95     26      19 0.870
+       JDT       53        2 1951       0.229       0.750        0.927     29      31     15      12 0.856
+       SWT       41       12 1346       0.229       0.700        0.903     19      20     14      11 0.794
+(top1_share é a prioridade da classe mais frequente, uma estatística da distribuição do rótulo, não de um modelo.)
+
+== 3. Cold-start sob split cronológico 80/10/10 por report_time ==
+   projeto split  bugs  pares  pares_author_nao_visto  pct_pares_nao_vistos  bugs_todos_authors_nao_vistos  pct_bugs_sem_acerto_possivel  pct_pares_author_com_menos_de_5_bugs_no_treino  authors_treino
+      BIRT   val   666    689                       8                 0.012                              7                         0.011                                           0.012              59
+      BIRT  test   666    680                      44                 0.065                             42                         0.063                                           0.065              59
+Eclipse UI   val   885    942                      18                 0.019                             13                         0.015                                           0.033              74
+Eclipse UI  test   886    950                     198                 0.208                            175                         0.198                                           0.362              74
+       JDT   val   828    851                       3                 0.004                              2                         0.002                                           0.007              28
+       JDT  test   828    884                      45                 0.051                             30                         0.036                                           0.113              28
+       SWT   val   559    576                       0                 0.000                              0                         0.000                                           0.017              28
+       SWT  test   560    593                      81                 0.137                             67                         0.120                                           0.211              28
+(pct_bugs_sem_acerto_possivel = fração de bugs cujos authors todos estão ausentes do treino; é o teto de perda de qualquer modelo de conjunto fechado.)
+
+== 4. Tamanho do pool de candidatos: authors ativos nos 365 dias anteriores ao report_time (bugs de teste) ==
+   projeto  teste  pool_365d_q10  pool_365d_mediana  pool_365d_q90  pool_historico_mediana
+      BIRT    666             23                 26             28                      60
+Eclipse UI    886             30                 36             52                      97
+       JDT    828              6                  8             17                      32
+       SWT    560             10                 13             16                      37
+
+== 5. Deriva temporal: bugs e authors distintos por ano de report_time ==
+project  bugs_BIRT  bugs_Eclipse UI  bugs_JDT  bugs_SWT  authors_BIRT  authors_Eclipse UI  authors_JDT  authors_SWT
+ano                                                                                                                
+2001             0              168       296         0             0                  18           12            0
+2002             0              644      1135       513             0                  26           17           16
+2003             0              462      1155       555             0                  20           17           18
+2004             0             1121      1147       630             0                  23           19           12
+2005           624             1041      1258       716            39                  30           14           14
+2006          1494             1016       930       491            48                  30           12           12
+2007          1634             1025       739       532            40                  27            9           11
+2008          1283              679       537       660            31                  22           10           12
+2009          1181              707       361       601            27                  28            7           12
+2010           372             1006       296       333            25                  26            6           10
+2011            15              445       187       215             8                  35           13           17
+2012            19              314       138       229             9                  52           15           12
+2013            36              225        97       112            13                  43           17           13
+2014             0                1         1         7             0                   1            1            3
+
+== 6. Tempo até o primeiro commit (D4), dias, base FIXED ==
+   projeto    n  negativos  q10  mediana   q90    q99    max  gt_365d
+      BIRT 6658          7  0.1      4.5  64.3  563.6 1900.4      121
+Eclipse UI 8854         58  0.0      6.9 262.5 1446.0 4138.5      640
+       JDT 8277         41  0.1      6.1 239.7 1773.6 3647.5      563
+       SWT 5594         38  0.1      8.9 285.2 1540.7 3408.1      458
+Variação entre authors (authors com >= 20 bugs): quantis da mediana de dias por author
+   projeto  authors_ge20  q10  q50  q90
+      BIRT            41  2.3  5.2 10.5
+Eclipse UI            35  3.8  9.7 43.2
+       JDT            18  4.4  6.5 46.2
+       SWT            19  3.9 11.9 50.9
+
+== 7. Prioridade e severidade na base ==
+               P3  normal  enhancement
+project                               
+BIRT        0.915   0.720        0.080
+Eclipse UI  0.821   0.689        0.078
+JDT         0.817   0.687        0.098
+SWT         0.933   0.732        0.039
+Variação entre authors (>= 20 bugs): fração de bugs com severidade 'normal' por author, quantis; e fração com P3
+   projeto  authors_ge20  normal_q10  normal_q50  normal_q90  p3_q10  p3_q50  p3_q90
+      BIRT            41        0.56        0.73        0.82    0.76    0.94    0.99
+Eclipse UI            35        0.56        0.71        0.80    0.51    0.93    1.00
+       JDT            18        0.56        0.68        0.75    0.51    0.77    0.92
+       SWT            19        0.65        0.73        0.85    0.80    0.97    1.00
+
+== 8. Metadados como sinal do rótulo: componente ==
+   projeto  componentes  top_componente_share  pureza_em_amostra  top1_share_global
+      BIRT           52                 0.222              0.407              0.105
+Eclipse UI           36                 0.939              0.202              0.185
+       JDT           25                 0.744              0.349              0.229
+       SWT           27                 0.983              0.233              0.229
+(pureza_em_amostra = soma, por componente, do author mais frequente, dividida pelo total de pares; calculada nos mesmos dados, portanto otimista. Compare com top1_share_global.)
+
+== 9. Texto na base ==
+summary começa com 'Bug <n> – ': 100.0% dos bugs; n igual ao bug_id: 100.0%
+descrição contém 'Bug <bug_id>' do próprio bug: 0.0%
+   projeto  bugs  desc_vazia  summary_w_med  texto_w_med  texto_w_q90  texto_w_q99  pct_texto_gt_300w  pct_texto_gt_400w  pct_summary_duplicado_sem_prefixo
+      BIRT  6658       0.264              9           55          145          310              0.011              0.006                              0.011
+Eclipse UI  8854       0.198              8           49          156          424              0.022              0.012                              0.004
+       JDT  8277       0.150              8           56          162          364              0.019              0.008                              0.003
+       SWT  5594       0.222              7           59          182          599              0.034              0.019                              0.002
+(palavras separadas por espaço, summary sem o prefixo 'Bug <id> – '; tokens WordPiece serão mais numerosos, razão não medida. Quando a descrição é vazia, o texto é só o summary.)
+
+== 10. Authors em mais de um projeto (strings idênticas) ==
+            BIRT  Eclipse UI  JDT  SWT
+BIRT          74           0    0    0
+Eclipse UI     0         138   13    8
+JDT            0          13   53    3
+SWT            0           8    3   41
+(strings idênticas apenas; identidades heterogêneas, D11 aberta, subestimam a sobreposição real.)

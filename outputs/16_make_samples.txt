@@ -1,0 +1,17 @@
+Nomes distintos: 4014; pseudonimizados: 3967; genéricos mantidos: 47; colisões de pseudônimo: 0
+
+bug_commit_sample.csv: 278 linhas, {'BIRT': 50, 'Eclipse UI': 50, 'JDT': 50, 'SWT': 50} bugs por projeto (semente 42)
+bug_and_files_sample.csv: 136 linhas (bugs sorteados que existem em bug_and_files; 136 de 200)
+features_OurNewApproach_fold1_sample.csv: 2840 linhas, 20 queries, 18 features
+features_PreviousApproach_fold1_sample.csv: 2840 linhas, 20 queries, 14 features
+
+Texto livre tratado: 0 e-mails trocados por <email>, 2 nomes completos trocados por pseudônimo.
+features_PreviousApproach_fold1_sample.csv: nomes reais ainda presentes (busca exata) = 0
+bug_commit_sample.csv: nomes reais ainda presentes (busca exata) = 0
+features_OurNewApproach_fold1_sample.csv: nomes reais ainda presentes (busca exata) = 0
+bug_and_files_sample.csv: nomes reais ainda presentes (busca exata) = 0
+Total de nomes completos reais encontrados nos arquivos de amostra: 0
+
+Resultados:
+(fato) a verificação acima é por busca exata de nomes conhecidos (colunas de pessoas e nomes completos); não detecta nomes parciais, apelidos ou terceiros em texto livre.
+(fato) a chave do HMAC fica em data/interim/pseudonym.key (ignorada pelo git); sem ela os pseudônimos não se refazem, mas as amostras versionadas continuam válidas.

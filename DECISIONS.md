@@ -93,3 +93,11 @@ Formato: data, título, status, evidência, alternativas, decisão, responsável
 - Alternativas: todos positivos; author do primeiro commit; author do último commit.
 - Decisão: todos os authors do bug são positivos (acerto no top-k se algum estiver no ranking). Implicação a tratar na modelagem: o treino do Ramo A precisa de um critério para pares positivos múltiplos.
 - Responsável: pesquisador.
+
+## D14. Publicação de dados no GitHub
+- Status: aberta (2026-10-16). Nada foi publicado; o `origin` do repositório é `joaomigueld3/BugReportAssignment`.
+- Evidência: `15_pii_scan` (nomes de usuários que reportaram bugs, nomes em texto livre, 8 e-mails em logs) e `16_make_samples` (amostras pseudonimizadas de cerca de 1,2 MB, 0 nomes reais pela busca exata). Reidentificação continua possível por `bug_id` e hash de commit.
+- Alternativas: (a) versionar só scripts, saídas agregadas e amostras pseudonimizadas, com instruções e SHA-256 para obter o dump do upstream (recomendada); (b) versionar também dados completos pseudonimizados (reidentificáveis, licença do dataset não verificada); (c) não publicar dados.
+- Decisão: pendente. Verificar também a licença do repositório upstream, que não tem arquivo de licença visível.
+- Responsável: pesquisador.
+

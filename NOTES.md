@@ -165,6 +165,22 @@ Componentes:
 - (fato) D9, `14_alkhazi_filter`: nenhuma das 608 configurações testadas reproduz os tamanhos de Alkhazi (nem um único projeto). A causa continua não confirmada.
 - (fato) Consequência da D10: a base passa a ter 29.383 bugs (BIRT 6.658, UI 8.854, JDT 8.277, SWT 5.594), 8.285 a mais que a referência DevRanker (21.098) e 6.967 a mais que Alkhazi (22.416). A comparação de tamanho com a literatura deve ser feita com essa ressalva.
 
+## Etapa 15: dados pessoais, amostras e visualizador (2026-10-16; scripts 15, 16, 17)
+
+- (fato) `15_pii_scan`: 4.012 nomes distintos nas colunas `reporter`, `assignee` e `author` (3.965 não genéricos); a maioria é de `reporter` (686 a 1.499 por projeto), isto é, usuários que abriram bugs, não só desenvolvedores. E-mails em `summary` e `description`: 0. Em `log`: 8 linhas (3 UI, 4 JDT, 1 SWT). Nomes completos de desenvolvedores conhecidos aparecem em 0,6% das descrições (174 de 30.781) e em 1,0% dos logs (422 de 41.062); 15 logs têm Signed-off-by/Contributed by/Reviewed-by. Limite: só se detectam nomes completos já conhecidos, não nomes parciais nem de terceiros.
+- (fato) `16_make_samples`: amostras em `data/samples/` (semente 42): 50 bugs por projeto com todas as linhas bug-commit (278 linhas), 136 linhas de `bug_and_files` (dos 200 bugs, 136 existem nessa tabela), e 20 queries do fold 1 de cada abordagem de features (2.840 linhas, só fold 1 por causa de D8). Nomes trocados por `dev_<8 hex>` (HMAC-SHA256, chave em `data/interim/pseudonym.key`, fora do git, sem colisões); contas genéricas ficam legíveis; colunas `*_stemmed` omitidas. Verificação por busca exata: 0 nomes reais restantes nos 4 CSV. Tamanho total cerca de 1,2 MB.
+- (fato) Isto é pseudonimização, não anonimização: `bug_id`, hash do commit e datas são públicos e permitem reidentificar pelo Bugzilla e pelo GitHub.
+- (fato) `17_build_viewer`: gera `data/samples/visualizador.html` (1,7 MB, offline), com uma aba por saída de `outputs/` e as quatro amostras com busca, filtro, ordenação e paginação. Conferido: 0 nomes completos reais e só endereços de caixas genéricas no HTML; sintaxe do JavaScript checada com `node --check`. Não testado em navegador por mim.
+- Correção operacional: `run_all.sh` incluía `14_verify_mysql.py` pelo glob, o que falharia sem o contêiner; agora ignora `*verify_mysql*` e roda até o script 17.
+
+## Etapa 16: análise exploratória consolidada na base decidida (2026-10-23; script 18)
+
+- (fato) `18_eda_base.py` recalcula os descritivos sobre a base das decisões D10 (FIXED, chave (projeto, `bug_id`)), D2/D13 (author, todos positivos) e D4/D6: base de 29.383 bugs e 30.572 pares bug-author; distribuição do rótulo; cold-start sob 80/10/10 por `report_time` (bugs de teste sem nenhum author no treino: BIRT 6,3%, UI 19,8%, JDT 3,6%, SWT 12,0%); pool de authors ativos nos 365 dias anteriores (mediana 26, 36, 8, 13); deriva temporal; tempo até o primeiro commit; variação de prioridade, severidade e tempo entre authors; pureza do componente em relação ao author (em amostra, otimista); texto.
+- (fato) Achado novo: 100% dos `summary` começam com "Bug <n> – " e `<n>` é o próprio `bug_id`. Descrição não contém o id. (inferência) Entra como feature textual e proxy do tempo se não for removido; os comprimentos de texto de 11_text incluem esse prefixo (3 palavras), os de 18 não.
+- `outputs/analise_exploratoria.md`: documento único e autocontido (17 KB, sem nomes de desenvolvedores) com contexto, decisões, números e perguntas em aberto, para anexar a um Claude Project. Não decide método.
+- `run_all.sh` passa a rodar até o script 18.
+- `outputs/analise_exploratoria_short.md`: versão enxuta (cerca de 6 KB), folha de consulta do que a base permite, distinguindo campos conhecidos no report de campos só do histórico (`assignee`, `status`, `commit`, `commit_time`, `log`, `files` vêm da atribuição final e do commit de correção). Mesmos números de `analise_exploratoria.md`, sem as seções de proveniência e decisões.
+
 ## Itens que precisam do pesquisador
 
 Ver `DECISIONS.md`. Pendências desta etapa: população-base, resolução de identidades, tratamento de contas genéricas e de bugs não fechados, e teste de sanidade com os arquivos de features (D8 inspecionado e encerrado; ver Etapa 12).

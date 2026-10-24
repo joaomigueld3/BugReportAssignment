@@ -3,6 +3,7 @@ import os
 import re
 import sqlite3
 
+import numpy as np
 import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
